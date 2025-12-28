@@ -22,6 +22,7 @@ const addressSchema = z.object({
   city: z.string().min(1, 'City is required').max(100),
   state: z.string().min(1, 'State is required').max(100),
   pincode: z.string().min(1, 'Pincode is required').max(20),
+  country: z.string().min(1, 'Country is required').max(100),
 });
 
 const ChildAddress = () => {
@@ -35,6 +36,7 @@ const ChildAddress = () => {
     city: '',
     state: '',
     pincode: '',
+    country: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -54,6 +56,7 @@ const ChildAddress = () => {
           city: data.city,
           state: data.state,
           pincode: data.pincode,
+          country: data.country || '',
         });
       }
       setLoading(false);
@@ -162,6 +165,16 @@ const ChildAddress = () => {
                 />
                 {errors.pincode && <p className="text-sm text-destructive">{errors.pincode}</p>}
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="country">Country</Label>
+              <Input
+                id="country"
+                value={formData.country}
+                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                placeholder="Enter your country"
+              />
+              {errors.country && <p className="text-sm text-destructive">{errors.country}</p>}
             </div>
             <Button type="submit" variant="christmasGreen" className="w-full" disabled={saving}>
               {saving ? 'Saving...' : addressId ? 'Update Address' : 'Save Address'}
