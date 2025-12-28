@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Home, Users, Package, MessageSquare, Check, X } from 'lucide-react';
+import { Home, Users, Package, MessageSquare } from 'lucide-react';
 
 const navItems = [
   { label: 'Dashboard', href: '/sanda/dashboard', icon: <Home className="w-5 h-5" /> },
@@ -27,7 +26,6 @@ const SandaWishlist = () => {
       .select('*, child:profiles!wishes_child_id_fkey(full_name, id), assigned_elf:profiles!wishes_assigned_elf_id_fkey(full_name)')
       .order('created_at', { ascending: false });
     
-    // Fetch addresses separately to avoid filtering out wishes without addresses
     if (wishData && wishData.length > 0) {
       const childIds = [...new Set(wishData.map(w => w.child_id))];
       const { data: addressData } = await supabase
@@ -53,13 +51,24 @@ const SandaWishlist = () => {
 
   useEffect(() => { fetchData(); }, []);
 
-  const updateWish = async (wishId: string, updates: any) => {
-    const { error } = await supabase.from('wishes').update(updates).eq('id', wishId);
+  const assignElf = async (wishId: string, elfId: string) => {
+    const { error } = await supabase
+      .from('wishes')
+      .update({ assigned_elf_id: elfId, status: 'assigned' })
+      .eq('id', wishId);
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Updated', description: 'Wish updated successfully.' });
+      toast({ title: 'Assigned', description: 'Wish assigned to elf successfully.' });
       fetchData();
+    }
+  };
+
+  const getStatusBadgeVariant = (status: string) => {
+    switch (status) {
+      case 'assigned': return 'default';
+      case 'delivered': return 'secondary';
+      default: return 'outline';
     }
   };
 
@@ -96,22 +105,17 @@ const SandaWishlist = () => {
                         </p>
                       )}
                     </div>
-                    <Badge>{wish.status}</Badge>
+                    <Badge variant={getStatusBadgeVariant(wish.status)}>
+                      {wish.status.toUpperCase()}
+                    </Badge>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {wish.status === 'pending' && (
-                      <>
-                        <Button size="sm" variant="christmasGreen" onClick={() => updateWish(wish.id, { status: 'approved' })}>
-                          <Check className="w-4 h-4 mr-1" /> Approve
-                        </Button>
-                        <Button size="sm" variant="destructive" onClick={() => updateWish(wish.id, { status: 'rejected' })}>
-                          <X className="w-4 h-4 mr-1" /> Reject
-                        </Button>
-                      </>
-                    )}
-                    <Select value={wish.assigned_elf_id || ''} onValueChange={(v) => updateWish(wish.id, { assigned_elf_id: v })}>
-                      <SelectTrigger className="w-40">
-                        <SelectValue placeholder="Assign Elf" />
+                  <div className="flex flex-wrap gap-2 items-center">
+                    <Select 
+                      value={wish.assigned_elf_id || ''} 
+                      onValueChange={(v) => assignElf(wish.id, v)}
+                    >
+                      <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Assign to Elf" />
                       </SelectTrigger>
                       <SelectContent>
                         {elves.map((elf) => (
@@ -119,6 +123,11 @@ const SandaWishlist = () => {
                         ))}
                       </SelectContent>
                     </Select>
+                    {wish.assigned_elf?.full_name && (
+                      <span className="text-sm text-muted-foreground">
+                        Assigned to: {wish.assigned_elf.full_name}
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}
