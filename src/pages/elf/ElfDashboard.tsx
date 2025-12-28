@@ -4,10 +4,9 @@ import DashboardLayout from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Home, Package, Gift, MapPin } from 'lucide-react';
+import { Home, Package, Gift, MapPin, CheckCircle } from 'lucide-react';
 
 const navItems = [
   { label: 'Dashboard', href: '/elf/dashboard', icon: <Home className="w-5 h-5" /> },
@@ -22,23 +21,47 @@ const ElfDashboard = () => {
 
   const fetchWishes = async () => {
     if (!profile?.id) return;
-    const { data } = await supabase
+    
+    // Fetch wishes assigned to this elf
+    const { data: wishData } = await supabase
       .from('wishes')
-      .select('*, child:profiles!wishes_child_id_fkey(full_name), address:addresses!inner(house_street, city, state, pincode)')
+      .select('*, child:profiles!wishes_child_id_fkey(full_name, id)')
       .eq('assigned_elf_id', profile.id)
       .order('created_at', { ascending: false });
-    setWishes(data || []);
+    
+    // Fetch addresses separately for the assigned wishes
+    if (wishData && wishData.length > 0) {
+      const childIds = [...new Set(wishData.map(w => w.child_id))];
+      const { data: addressData } = await supabase
+        .from('addresses')
+        .select('user_id, house_street, city, state, pincode, country')
+        .in('user_id', childIds);
+      
+      const addressMap = new Map(addressData?.map(a => [a.user_id, a]) || []);
+      wishData.forEach((w: any) => {
+        w.address = addressMap.get(w.child_id) || null;
+      });
+    }
+    
+    setWishes(wishData || []);
     setLoading(false);
   };
 
-  useEffect(() => { fetchWishes(); }, [profile?.id]);
+  useEffect(() => { 
+    if (profile?.id) {
+      fetchWishes(); 
+    }
+  }, [profile?.id]);
 
-  const updateStatus = async (wishId: string, status: string) => {
-    const { error } = await supabase.from('wishes').update({ status }).eq('id', wishId);
+  const markAsDelivered = async (wishId: string) => {
+    const { error } = await supabase
+      .from('wishes')
+      .update({ status: 'delivered' })
+      .eq('id', wishId);
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Updated', description: 'Delivery status updated.' });
+      toast({ title: 'Delivered!', description: 'Wish marked as delivered.' });
       fetchWishes();
     }
   };
@@ -62,7 +85,7 @@ const ElfDashboard = () => {
               <Gift className="w-12 h-12" />
               <div>
                 <h3 className="text-2xl font-display font-bold">Welcome, {profile?.full_name}!</h3>
-                <p className="opacity-90">Help Sanda deliver gifts to children!</p>
+                <p className="opacity-90">Help Santa deliver gifts to children!</p>
               </div>
             </div>
           </CardContent>
@@ -84,26 +107,32 @@ const ElfDashboard = () => {
                         <p className="font-semibold">{wish.wish_text}</p>
                         <p className="text-sm text-muted-foreground">For: {wish.child?.full_name}</p>
                       </div>
-                      <Badge className={wish.status === 'completed' ? 'bg-christmas-green text-christmas-snow' : ''}>
-                        {wish.status.replace('_', ' ')}
+                      <Badge variant={wish.status === 'delivered' ? 'secondary' : 'default'}>
+                        {wish.status.toUpperCase()}
                       </Badge>
                     </div>
                     {wish.address && (
-                      <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4 mt-0.5" />
-                        <span>{wish.address.house_street}, {wish.address.city}, {wish.address.state} - {wish.address.pincode}</span>
+                      <div className="flex items-start gap-2 text-sm text-muted-foreground bg-background/50 p-3 rounded">
+                        <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-medium text-foreground">Delivery Address:</p>
+                          <p>{wish.address.house_street}</p>
+                          <p>{wish.address.city}, {wish.address.state} - {wish.address.pincode}</p>
+                          {wish.address.country && <p>{wish.address.country}</p>}
+                        </div>
                       </div>
                     )}
-                    <Select value={wish.status} onValueChange={(v) => updateStatus(wish.id, v)}>
-                      <SelectTrigger className="w-40">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="approved">Approved</SelectItem>
-                        <SelectItem value="in_progress">In Progress</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {wish.status !== 'delivered' && (
+                      <Button 
+                        size="sm" 
+                        variant="christmasGreen"
+                        onClick={() => markAsDelivered(wish.id)}
+                        className="w-full sm:w-auto"
+                      >
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        Mark as Delivered
+                      </Button>
+                    )}
                   </div>
                 ))}
               </div>
