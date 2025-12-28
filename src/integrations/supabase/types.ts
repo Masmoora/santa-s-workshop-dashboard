@@ -17,6 +17,7 @@ export type Database = {
       addresses: {
         Row: {
           city: string
+          country: string
           created_at: string
           house_street: string
           id: string
@@ -27,6 +28,7 @@ export type Database = {
         }
         Insert: {
           city: string
+          country?: string
           created_at?: string
           house_street: string
           id?: string
@@ -37,6 +39,7 @@ export type Database = {
         }
         Update: {
           city?: string
+          country?: string
           created_at?: string
           house_street?: string
           id?: string
