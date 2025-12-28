@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
-import { Home, Users, Package, MessageSquare, ArrowLeft, MapPin } from 'lucide-react';
+import { Home, Users, Package, MessageSquare, ArrowLeft, MapPin, Mail } from 'lucide-react';
 
 const navItems = [
   { label: 'Dashboard', href: '/sanda/dashboard', icon: <Home className="w-5 h-5" /> },
@@ -19,6 +19,7 @@ const SandaChildDetail = () => {
   const [child, setChild] = useState<any>(null);
   const [address, setAddress] = useState<any>(null);
   const [wishes, setWishes] = useState<any[]>([]);
+  const [letters, setLetters] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const SandaChildDetail = () => {
         .from('addresses')
         .select('*')
         .eq('user_id', id)
-        .single();
+        .maybeSingle();
       setAddress(addressData);
 
       const { data: wishData } = await supabase
@@ -43,6 +44,14 @@ const SandaChildDetail = () => {
         .eq('child_id', id)
         .order('created_at', { ascending: false });
       setWishes(wishData || []);
+
+      const { data: letterData } = await supabase
+        .from('letters')
+        .select('*')
+        .eq('child_id', id)
+        .order('created_at', { ascending: false });
+      setLetters(letterData || []);
+
       setLoading(false);
     };
     fetchData();
@@ -118,6 +127,39 @@ const SandaChildDetail = () => {
                       )}
                     </div>
                     <Badge>{wish.status}</Badge>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-display flex items-center gap-2">
+              <Mail className="w-5 h-5" />
+              Letters ({letters.length})
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {letters.length === 0 ? (
+              <p className="text-muted-foreground text-center py-4">No letters yet.</p>
+            ) : (
+              <div className="space-y-3">
+                {letters.map((letter) => (
+                  <div key={letter.id} className="p-4 bg-muted rounded-lg space-y-2">
+                    <div className="flex justify-between items-start">
+                      <p className="font-medium text-sm line-clamp-2">{letter.letter_content}</p>
+                      <Badge variant={letter.status === 'replied' ? 'default' : 'secondary'}>
+                        {letter.status}
+                      </Badge>
+                    </div>
+                    {letter.reply_content && (
+                      <div className="bg-background/50 p-2 rounded text-sm">
+                        <p className="text-xs text-muted-foreground mb-1">Reply:</p>
+                        <p className="line-clamp-2">{letter.reply_content}</p>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

@@ -24,8 +24,22 @@ const SandaWishlist = () => {
   const fetchData = async () => {
     const { data: wishData } = await supabase
       .from('wishes')
-      .select('*, child:profiles!wishes_child_id_fkey(full_name, id), assigned_elf:profiles!wishes_assigned_elf_id_fkey(full_name), address:addresses!inner(house_street, city, state, pincode)')
+      .select('*, child:profiles!wishes_child_id_fkey(full_name, id), assigned_elf:profiles!wishes_assigned_elf_id_fkey(full_name)')
       .order('created_at', { ascending: false });
+    
+    // Fetch addresses separately to avoid filtering out wishes without addresses
+    if (wishData && wishData.length > 0) {
+      const childIds = [...new Set(wishData.map(w => w.child_id))];
+      const { data: addressData } = await supabase
+        .from('addresses')
+        .select('user_id, house_street, city, state, pincode, country')
+        .in('user_id', childIds);
+      
+      const addressMap = new Map(addressData?.map(a => [a.user_id, a]) || []);
+      wishData.forEach((w: any) => {
+        w.address = addressMap.get(w.child_id) || null;
+      });
+    }
 
     const { data: elfData } = await supabase
       .from('profiles')
