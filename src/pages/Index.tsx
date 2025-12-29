@@ -49,7 +49,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t border-border py-8 text-center text-muted-foreground">
-        <p>&copy; 2024 SantaGifts. Spreading Christmas joy!</p>
+        <p>&copy; 2025 SantaGifts. Spreading Christmas joy!</p>
       </footer>
     </div>
   );
