@@ -54,7 +54,7 @@ const SandaWishlist = () => {
   const assignElf = async (wishId: string, elfId: string) => {
     const { error } = await supabase
       .from('wishes')
-      .update({ assigned_elf_id: elfId, status: 'assigned' })
+      .update({ assigned_elf_id: elfId, status: 'in_progress' })
       .eq('id', wishId);
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
@@ -66,9 +66,17 @@ const SandaWishlist = () => {
 
   const getStatusBadgeVariant = (status: string) => {
     switch (status) {
-      case 'assigned': return 'default';
-      case 'delivered': return 'secondary';
+      case 'in_progress': return 'default';
+      case 'completed': return 'secondary';
       default: return 'outline';
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'in_progress': return 'ASSIGNED';
+      case 'completed': return 'DELIVERED';
+      default: return status.toUpperCase();
     }
   };
 
@@ -106,7 +114,7 @@ const SandaWishlist = () => {
                       )}
                     </div>
                     <Badge variant={getStatusBadgeVariant(wish.status)}>
-                      {wish.status.toUpperCase()}
+                      {getStatusLabel(wish.status)}
                     </Badge>
                   </div>
                   <div className="flex flex-wrap gap-2 items-center">

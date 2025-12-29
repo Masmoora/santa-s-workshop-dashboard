@@ -55,13 +55,21 @@ const ElfDashboard = () => {
   const markAsDelivered = async (wishId: string) => {
     const { error } = await supabase
       .from('wishes')
-      .update({ status: 'delivered' })
+      .update({ status: 'completed' })
       .eq('id', wishId);
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
       toast({ title: 'Delivered!', description: 'Wish marked as delivered.' });
       fetchWishes();
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'in_progress': return 'ASSIGNED';
+      case 'completed': return 'DELIVERED';
+      default: return status.toUpperCase();
     }
   };
 
@@ -106,8 +114,8 @@ const ElfDashboard = () => {
                         <p className="font-semibold">{wish.wish_text}</p>
                         <p className="text-sm text-muted-foreground">For: {wish.child?.full_name}</p>
                       </div>
-                      <Badge variant={wish.status === 'delivered' ? 'secondary' : 'default'}>
-                        {wish.status.toUpperCase()}
+                      <Badge variant={wish.status === 'completed' ? 'secondary' : 'default'}>
+                        {getStatusLabel(wish.status)}
                       </Badge>
                     </div>
                     {wish.address && (
@@ -121,7 +129,7 @@ const ElfDashboard = () => {
                         </div>
                       </div>
                     )}
-                    {wish.status !== 'delivered' && (
+                    {wish.status !== 'completed' && (
                       <Button 
                         size="sm" 
                         variant="christmasGreen"
