@@ -9,7 +9,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Home, Package, Gift, MapPin, CheckCircle } from 'lucide-react';
 
 const navItems = [
-  { label: 'Dashboard', href: '/elf/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'My Deliveries', href: '/elf/dashboard', icon: <Package className="w-5 h-5" /> },
 ];
 
