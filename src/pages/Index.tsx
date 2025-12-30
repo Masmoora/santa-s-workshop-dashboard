@@ -14,7 +14,7 @@ const Index = () => {
           SantaGifts
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-          Send your Christmas wishes to Sanda and make your dreams come true this holiday season!
+          Send your Christmas wishes to Santa and make your dreams come true this holiday season!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button variant="christmas" size="lg" asChild>
@@ -32,12 +32,12 @@ const Index = () => {
           <div className="text-center p-6 bg-card rounded-lg border border-border">
             <Star className="w-12 h-12 text-accent mx-auto mb-4" />
             <h3 className="text-xl font-display font-bold mb-2">Make Wishes</h3>
-            <p className="text-muted-foreground">Add your Christmas wishes and Sanda will review them!</p>
+            <p className="text-muted-foreground">Add your Christmas wishes and Santa will review them!</p>
           </div>
           <div className="text-center p-6 bg-card rounded-lg border border-border">
             <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-display font-bold mb-2">Write Letters</h3>
-            <p className="text-muted-foreground">Send a personal letter to Sanda and get a reply!</p>
+            <p className="text-muted-foreground">Send a personal letter to Santa and get a reply!</p>
           </div>
           <div className="text-center p-6 bg-card rounded-lg border border-border">
             <Users className="w-12 h-12 text-secondary mx-auto mb-4" />

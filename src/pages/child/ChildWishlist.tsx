@@ -14,7 +14,7 @@ const navItems = [
   { label: 'Dashboard', href: '/child/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'My Address', href: '/child/address', icon: <MapPin className="w-5 h-5" /> },
   { label: 'My Wishlist', href: '/child/wishlist', icon: <Star className="w-5 h-5" /> },
-  { label: 'Letter to Sanda', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
+  { label: 'Letter to Santa', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
 ];
 
 interface Wish {
@@ -68,7 +68,7 @@ const ChildWishlist = () => {
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Wish added!', description: 'Your wish has been sent to Sanda.' });
+      toast({ title: 'Wish added!', description: 'Your wish has been sent to Santa.' });
       setNewWish('');
       // Refresh wishes
       const { data } = await supabase
@@ -125,7 +125,7 @@ const ChildWishlist = () => {
         <Card>
           <CardHeader>
             <CardTitle className="font-display">Add a Wish</CardTitle>
-            <CardDescription>Tell Sanda what you'd like for Christmas!</CardDescription>
+            <CardDescription>Tell Santa what you'd like for Christmas!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex gap-3">

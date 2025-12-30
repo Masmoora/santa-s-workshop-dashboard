@@ -77,7 +77,7 @@ const SandaDashboard = () => {
             <div className="flex items-center gap-4">
               <Gift className="w-12 h-12" />
               <div>
-                <h3 className="text-2xl font-display font-bold">Welcome, Sanda!</h3>
+                <h3 className="text-2xl font-display font-bold">Welcome, Santa!</h3>
                 <p className="opacity-90">Manage wishes and spread Christmas joy!</p>
               </div>
             </div>

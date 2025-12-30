@@ -14,7 +14,7 @@ const navItems = [
   { label: 'Dashboard', href: '/child/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'My Address', href: '/child/address', icon: <MapPin className="w-5 h-5" /> },
   { label: 'My Wishlist', href: '/child/wishlist', icon: <Star className="w-5 h-5" /> },
-  { label: 'Letter to Sanda', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
+  { label: 'Letter to Santa', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
 ];
 
 const addressSchema = z.object({
@@ -120,7 +120,7 @@ const ChildAddress = () => {
       <Card className="max-w-xl">
         <CardHeader>
           <CardTitle className="font-display">Delivery Address</CardTitle>
-          <CardDescription>Add your address so Sanda knows where to deliver your gifts!</CardDescription>
+          <CardDescription>Add your address so Santa knows where to deliver your gifts!</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
