@@ -1,11 +1,17 @@
-🎅 SantaGifts – Christmas Wish Management Web App
+# 🎅 SantaGifts – Christmas Wish Management Web App
 
-📌 Project Description
+## 📌 Project Description
 
-SantaGifts is a Christmas-themed web application designed to digitally manage Santa’s gift delivery process.
-The platform connects Children, Santa (Admin), and Elves in a structured workflow where children can submit wishes and letters, Santa can manage and assign tasks, and Elves can deliver gifts.
+SantaGifts is a Christmas-themed web application designed to digitally manage Santa’s gift delivery process.  
+The platform connects **Children**, **Santa (Admin)**, and **Elves** in a structured workflow where:
 
-This project modernizes the traditional Christmas process by introducing role-based dashboards, wish tracking, letter communication, and delivery management - all in one festive application.
+- Children submit wishes and letters
+- Santa manages wishes and assigns them to Elves
+- Elves deliver gifts and update statuses
+
+This project modernizes the traditional Christmas workflow by introducing **role-based dashboards**, **wish tracking**, **letter communication**, and **delivery management** — all in one festive application 🎄✨
+
+---
 
 ## ✨ Features
 
@@ -20,59 +26,68 @@ This project modernizes the traditional Christmas process by introducing role-ba
 
 ---
 
-🎅 Santa (Admin) Features
+### 🎅 Santa (Admin) Features
+- Secure admin login (no public signup)  
+- Dashboard overview:
+  - Total children  
+  - Total wishes  
+  - Pending / Assigned / Delivered wishes  
+  - Total letters  
+  - Total elves  
+- View all registered children and their details  
+- View children’s delivery addresses  
+- Read and reply to children’s letters  
+- View all wishes with child and address details  
+- Assign wishes to specific Elves  
+- Track wish delivery status  
+- Manage Elves:
+  - View Elf name and email  
+  - View assigned wishes count  
+  - View completed wishes count  
 
-• Secure admin login (no public signup)
-• Dashboard overview:
-Total children
-Total wishes
-Pending / Assigned / Delivered wishes
-Total letters
-Total elves
-• View all registered children and their details
-• View children’s delivery addresses
-• Read and reply to children’s letters
-• View all wishes with child and address details
-• Assign wishes to specific Elves
-• Track wish delivery status
-Manage Elves:
-• View Elf name and email
-• View assigned wishes count
-• View completed wishes count
+---
 
-🧝 Elf Features
+### 🧝 Elf Features
+- Secure signup and login  
+- View assigned wishes  
+- View child delivery address  
+- Update wish status to Delivered  
+- Track completed deliveries  
 
-• Secure signup and login
-• View assigned wishes
-• View child delivery address
-• Update wish status to Delivered
-• Track completed deliveries
+---
 
-🛠 Tech Stack Used
+## 🛠 Tech Stack
 
-Frontend:
+### Frontend
+- React 18  
+- TypeScript  
+- Vite  
+- React Router DOM  
+- TanStack React Query  
+- React Hook Form + Zod  
+- Tailwind CSS  
+- shadcn/ui  
+- Lucide Icons  
 
-React 18 + TypeScript
-Vite
-React Router DOM
-TanStack React Query
-React Hook Form + Zod
-Tailwind CSS + shadcn/ui
-Lucide Icons
+### Backend
+- Lovable Cloud (Supabase)  
+- PostgreSQL  
+- Supabase Authentication  
+- Row Level Security (RLS)  
 
-Backend:
+---
 
-Lovable Cloud (Supabase)
-PostgreSQL
-Supabase Authentication
-Row Level Security (RLS)
+## 🔐 Authentication & Authorization
 
-🔐 Authentication & Roles
+- Secure authentication using Supabase Auth  
+- Role-based routing and protected pages  
+- Roles:
+  - `child`
+  - `santa`
+  - `elf`
+- Permissions handled using Supabase Row Level Security (RLS) policies  
 
-Secure login using Supabase Auth
-Role-based routing and protected pages
-Roles: child, santa, elf
-Permissions handled using database policies
+---
 
 📦 Setup Instructions
 
