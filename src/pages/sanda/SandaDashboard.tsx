@@ -7,6 +7,7 @@ import { Home, Users, Package, MessageSquare, Gift, Clock, CheckCircle } from 'l
 const navItems = [
   { label: 'Dashboard', href: '/sanda/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'Children', href: '/sanda/children', icon: <Users className="w-5 h-5" /> },
+  { label: 'Elves', href: '/sanda/elves', icon: <Users className="w-5 h-5" /> },
   { label: 'Wishlist', href: '/sanda/wishlist', icon: <Package className="w-5 h-5" /> },
   { label: 'Letters', href: '/sanda/letters', icon: <MessageSquare className="w-5 h-5" /> },
 ];

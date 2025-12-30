@@ -20,6 +20,7 @@ import ChildLetters from "./pages/child/ChildLetters";
 import SandaDashboard from "./pages/sanda/SandaDashboard";
 import SandaChildren from "./pages/sanda/SandaChildren";
 import SandaChildDetail from "./pages/sanda/SandaChildDetail";
+import SandaElves from "./pages/sanda/SandaElves";
 import SandaWishlist from "./pages/sanda/SandaWishlist";
 import SandaLetters from "./pages/sanda/SandaLetters";
 
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/sanda/dashboard" element={<ProtectedRoute allowedRoles={['sanda']}><SandaDashboard /></ProtectedRoute>} />
             <Route path="/sanda/children" element={<ProtectedRoute allowedRoles={['sanda']}><SandaChildren /></ProtectedRoute>} />
             <Route path="/sanda/children/:id" element={<ProtectedRoute allowedRoles={['sanda']}><SandaChildDetail /></ProtectedRoute>} />
+            <Route path="/sanda/elves" element={<ProtectedRoute allowedRoles={['sanda']}><SandaElves /></ProtectedRoute>} />
             <Route path="/sanda/wishlist" element={<ProtectedRoute allowedRoles={['sanda']}><SandaWishlist /></ProtectedRoute>} />
             <Route path="/sanda/letters" element={<ProtectedRoute allowedRoles={['sanda']}><SandaLetters /></ProtectedRoute>} />
 
