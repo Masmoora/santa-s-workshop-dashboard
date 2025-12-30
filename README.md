@@ -104,6 +104,7 @@ Signup Page:
 Santa Dashboard Page:
 <img width="1905" height="947" alt="Screenshot 2025-12-30 130357" src="https://github.com/user-attachments/assets/06206fc1-960d-4d35-aaf2-7fa779d96442" />
 
+
 Child Dashboard Page:
 <img width="1909" height="994" alt="Screenshot 2025-12-30 130628" src="https://github.com/user-attachments/assets/7f9563bb-4d8f-419c-beed-516f1a793e71" />
 
