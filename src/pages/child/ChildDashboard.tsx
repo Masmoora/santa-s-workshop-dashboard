@@ -11,7 +11,7 @@ const navItems = [
   { label: 'Dashboard', href: '/child/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'My Address', href: '/child/address', icon: <MapPin className="w-5 h-5" /> },
   { label: 'My Wishlist', href: '/child/wishlist', icon: <Star className="w-5 h-5" /> },
-  { label: 'Letter to Sanda', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
+  { label: 'Letter to Santa', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
 ];
 
 const ChildDashboard = () => {
@@ -75,7 +75,7 @@ const ChildDashboard = () => {
               <Gift className="w-12 h-12" />
               <div>
                 <h3 className="text-2xl font-display font-bold">Welcome, {profile?.full_name}!</h3>
-                <p className="opacity-90">Send your wishes to Sanda and make this Christmas magical!</p>
+                <p className="opacity-90">Send your wishes to Santa and make this Christmas magical!</p>
               </div>
             </div>
           </CardContent>
@@ -181,7 +181,7 @@ const ChildDashboard = () => {
               <Button variant="christmas" className="h-auto py-4" asChild>
                 <Link to="/child/letters" className="flex flex-col items-center gap-2">
                   <Mail className="w-6 h-6" />
-                  <span>Write to Sanda</span>
+                  <span>Write to Santa</span>
                 </Link>
               </Button>
             </div>

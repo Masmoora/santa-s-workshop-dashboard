@@ -13,7 +13,7 @@ const navItems = [
   { label: 'Dashboard', href: '/child/dashboard', icon: <Home className="w-5 h-5" /> },
   { label: 'My Address', href: '/child/address', icon: <MapPin className="w-5 h-5" /> },
   { label: 'My Wishlist', href: '/child/wishlist', icon: <Star className="w-5 h-5" /> },
-  { label: 'Letter to Sanda', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
+  { label: 'Letter to Santa', href: '/child/letters', icon: <Mail className="w-5 h-5" /> },
 ];
 
 interface Letter {
@@ -57,7 +57,7 @@ const ChildLetters = () => {
     if (error) {
       toast({ title: 'Error', description: error.message, variant: 'destructive' });
     } else {
-      toast({ title: 'Letter sent!', description: 'Your letter has been sent to Sanda.' });
+      toast({ title: 'Letter sent!', description: 'Your letter has been sent to Santa.' });
       setNewLetter('');
       const { data } = await supabase
         .from('letters')
@@ -71,7 +71,7 @@ const ChildLetters = () => {
 
   if (loading) {
     return (
-      <DashboardLayout title="Letter to Sanda" navItems={navItems}>
+      <DashboardLayout title="Letter to Santa" navItems={navItems}>
         <div className="flex items-center justify-center h-64">
           <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
@@ -80,18 +80,18 @@ const ChildLetters = () => {
   }
 
   return (
-    <DashboardLayout title="Letter to Sanda" navItems={navItems}>
+    <DashboardLayout title="Letter to Santa" navItems={navItems}>
       <div className="space-y-6">
         <Card>
           <CardHeader>
             <CardTitle className="font-display">Write a Letter</CardTitle>
-            <CardDescription>Send a special letter to Sanda!</CardDescription>
+            <CardDescription>Send a special letter to Santa!</CardDescription>
           </CardHeader>
           <CardContent>
             <Textarea
               value={newLetter}
               onChange={(e) => setNewLetter(e.target.value)}
-              placeholder="Dear Sanda..."
+              placeholder="Dear Santa..."
               rows={6}
               className="mb-4"
             />
@@ -121,7 +121,7 @@ const ChildLetters = () => {
                     </div>
                     {letter.reply_content && (
                       <div className="p-3 bg-christmas-green/10 border border-christmas-green/30 rounded-lg">
-                        <p className="text-sm text-muted-foreground mb-1">Sanda's Reply:</p>
+                        <p className="text-sm text-muted-foreground mb-1">Santa's Reply:</p>
                         <p className="font-medium text-secondary">{letter.reply_content}</p>
                       </div>
                     )}
