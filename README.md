@@ -128,4 +128,20 @@ Start the app:
 npm run dev
 
 📸 Screenshots:
+
+Home / Landing Page:
 <img width="1904" height="947" alt="Screenshot 2025-12-30 130222" src="https://github.com/user-attachments/assets/09868f97-73b5-443d-acac-af2fb645826b" />
+
+Login Page:
+<img width="1063" height="902" alt="Screenshot 2025-12-30 130257" src="https://github.com/user-attachments/assets/f22259c5-4bfe-4b65-928f-572b87a5159c" />
+
+Signup Page:
+<img width="1456" height="947" alt="Screenshot 2025-12-30 130318" src="https://github.com/user-attachments/assets/233a3ad5-aaaa-41d6-8f74-f4550fefa741" />
+
+Santa Dashboard Page:
+<img width="1905" height="947" alt="Screenshot 2025-12-30 130357" src="https://github.com/user-attachments/assets/06206fc1-960d-4d35-aaf2-7fa779d96442" />
+
+
+
+
+
