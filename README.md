@@ -1,73 +1,131 @@
-# Welcome to your Lovable project
+🎅 SantaGifts – Christmas Wish Management Web App
+📌 Project Description
 
-## Project info
+SantaGifts is a Christmas-themed web application designed to digitally manage Santa’s gift delivery process.
+The platform connects Children, Santa (Admin), and Elves in a structured workflow where children can submit wishes and letters, Santa can manage and assign tasks, and Elves can deliver gifts.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+This project modernizes the traditional Christmas process by introducing role-based dashboards, wish tracking, letter communication, and delivery management — all in one festive application.
 
-## How can I edit this code?
+✨ Features
+👶 Child Features
 
-There are several ways of editing your application.
+Secure signup and login
 
-**Use Lovable**
+Add and update delivery address
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Submit Christmas wish list
 
-Changes made via Lovable will be committed automatically to this repo.
+View wish status (Pending, Assigned, Delivered)
 
-**Use your preferred IDE**
+Write letters to Santa
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+View Santa’s replies
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Personalized dashboard with activity summary
 
-Follow these steps:
+🎅 Santa (Admin) Features
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Secure admin login (no public signup)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Dashboard overview:
 
-# Step 3: Install the necessary dependencies.
-npm i
+Total children
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Total wishes
+
+Pending / Assigned / Delivered wishes
+
+Total letters
+
+Total elves
+
+View all registered children and their details
+
+View children’s delivery addresses
+
+Read and reply to children’s letters
+
+View all wishes with child and address details
+
+Assign wishes to specific Elves
+
+Track wish delivery status
+
+Manage Elves:
+
+View Elf name and email
+
+View assigned wishes count
+
+View completed wishes count
+
+🧝 Elf Features
+
+Secure login
+
+View assigned wishes
+
+View child delivery address
+
+Update wish status to Delivered
+
+Track completed deliveries
+
+🛠 Tech Stack
+
+Frontend:
+
+React 18 + TypeScript
+
+Vite
+
+React Router DOM
+
+TanStack React Query
+
+React Hook Form + Zod
+
+Tailwind CSS + shadcn/ui
+
+Lucide Icons
+
+Backend:
+
+Lovable Cloud (Supabase)
+
+PostgreSQL
+
+Supabase Authentication
+
+Row Level Security (RLS)
+
+🔐 Authentication & Roles
+
+Secure login using Supabase Auth
+
+Role-based routing and protected pages
+
+Roles: child, santa, elf
+
+Permissions handled using database policies
+
+📦 Setup Instructions
+
+Clone the repository
+
+Install dependencies
+
+npm install
+
+Add environment variables:
+
+VITE_SUPABASE_URL
+
+VITE_SUPABASE_PUBLISHABLE_KEY
+
+Start the app:
+
 npm run dev
-```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+📸 Screenshots:
+<img width="1904" height="947" alt="Screenshot 2025-12-30 130222" src="https://github.com/user-attachments/assets/09868f97-73b5-443d-acac-af2fb645826b" />
