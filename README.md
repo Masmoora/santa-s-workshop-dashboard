@@ -7,17 +7,18 @@ The platform connects Children, Santa (Admin), and Elves in a structured workflo
 
 This project modernizes the traditional Christmas process by introducing role-based dashboards, wish tracking, letter communication, and delivery management - all in one festive application.
 
-✨ Features:
+## ✨ Features
 
-👶 Child Features
+### 👶 Child Features
+- Secure signup and login  
+- Add and update delivery address  
+- Submit Christmas wish list  
+- View wish status (Pending / Assigned / Delivered)  
+- Write letters to Santa  
+- View Santa’s replies  
+- Personalized dashboard with activity summary  
 
-• Secure signup and login
-• Add and update delivery address
-• Submit Christmas wish list
-• View wish status (Pending, Assigned, Delivered)
-• Write letters to Santa
-• View Santa’s replies
-• Personalized dashboard with activity summary
+---
 
 🎅 Santa (Admin) Features
 
