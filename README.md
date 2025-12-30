@@ -89,7 +89,7 @@ This project modernizes the traditional Christmas workflow by introducing **role
 
 ---
 
-📦 Setup Instructions
+## 📦 Setup Instructions
 
 Clone the repository
 
@@ -107,7 +107,7 @@ Start the app:
 
 npm run dev
 
-##📸 Screenshots:
+## 📸 Screenshots
 
 Home / Landing Page:
 <img width="1904" height="947" alt="Screenshot 2025-12-30 130222" src="https://github.com/user-attachments/assets/09868f97-73b5-443d-acac-af2fb645826b" />
