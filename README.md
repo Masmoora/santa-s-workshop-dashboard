@@ -1,5 +1,6 @@
 🎅 SantaGifts – Christmas Wish Management Web App
-📌 Project Description
+
+##📌 Project Description
 
 SantaGifts is a Christmas-themed web application designed to digitally manage Santa’s gift delivery process.
 The platform connects Children, Santa (Admin), and Elves in a structured workflow where children can submit wishes and letters, Santa can manage and assign tasks, and Elves can deliver gifts.
@@ -127,7 +128,7 @@ Start the app:
 
 npm run dev
 
-📸 Screenshots:
+##📸 Screenshots:
 
 Home / Landing Page:
 <img width="1904" height="947" alt="Screenshot 2025-12-30 130222" src="https://github.com/user-attachments/assets/09868f97-73b5-443d-acac-af2fb645826b" />
@@ -140,6 +141,12 @@ Signup Page:
 
 Santa Dashboard Page:
 <img width="1905" height="947" alt="Screenshot 2025-12-30 130357" src="https://github.com/user-attachments/assets/06206fc1-960d-4d35-aaf2-7fa779d96442" />
+
+Child Dashboard Page:
+<img width="1909" height="994" alt="Screenshot 2025-12-30 130628" src="https://github.com/user-attachments/assets/7f9563bb-4d8f-419c-beed-516f1a793e71" />
+
+Elf Dashboard Page:
+<img width="1919" height="983" alt="Screenshot 2025-12-30 130830" src="https://github.com/user-attachments/assets/652bd522-09c5-4d41-ba0c-484354e402af" />
 
 
 
